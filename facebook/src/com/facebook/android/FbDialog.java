@@ -66,10 +66,9 @@ public class FbDialog extends Dialog {
         mListener = listener;
     }
 
-    @Override
     public void onDetachedFromWindow() {
-        detached = true;
         super.onDetachedFromWindow();
+        detached = true;
     }
 
     @Override
