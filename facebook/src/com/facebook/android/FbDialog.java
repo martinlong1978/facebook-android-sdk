@@ -135,6 +135,7 @@ public class FbDialog extends Dialog {
         mWebView.loadUrl(mUrl);
         mWebView.setLayoutParams(FILL);
         mWebView.setVisibility(View.INVISIBLE);
+        mWebView.getSettings().setSavePassword(false);
         
         webViewContainer.setPadding(margin, margin, margin, margin);
         webViewContainer.addView(mWebView);
@@ -145,7 +146,7 @@ public class FbDialog extends Dialog {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Log.d("Facebook-WebView", "Redirect URL: " + url);
+            Util.logd("Facebook-WebView", "Redirect URL: " + url);
             if (url.startsWith(Facebook.REDIRECT_URI)) {
                 Bundle values = Util.parseUrl(url);
 
@@ -189,7 +190,7 @@ public class FbDialog extends Dialog {
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            Log.d("Facebook-WebView", "Webview loading URL: " + url);
+            Util.logd("Facebook-WebView", "Webview loading URL: " + url);
             super.onPageStarted(view, url, favicon);
             if (!detached) {
                 mSpinner.show();
